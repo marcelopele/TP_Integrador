@@ -1,0 +1,17 @@
+C:\DOC\FCE\2025-Q1 - 1654 - CAI\TP\v2\TP_Integrador\TP_Integrador\bin\Debug\TP_Integrador.exe.config
+C:\DOC\FCE\2025-Q1 - 1654 - CAI\TP\v2\TP_Integrador\TP_Integrador\bin\Debug\TP_Integrador.exe
+C:\DOC\FCE\2025-Q1 - 1654 - CAI\TP\v2\TP_Integrador\TP_Integrador\bin\Debug\TP_Integrador.pdb
+C:\DOC\FCE\2025-Q1 - 1654 - CAI\TP\v2\TP_Integrador\TP_Integrador\obj\Debug\TP_Integrador.csproj.AssemblyReference.cache
+C:\DOC\FCE\2025-Q1 - 1654 - CAI\TP\v2\TP_Integrador\TP_Integrador\obj\Debug\TP_Integrador.Properties.Resources.resources
+C:\DOC\FCE\2025-Q1 - 1654 - CAI\TP\v2\TP_Integrador\TP_Integrador\obj\Debug\TP_Integrador.csproj.GenerateResource.cache
+C:\DOC\FCE\2025-Q1 - 1654 - CAI\TP\v2\TP_Integrador\TP_Integrador\obj\Debug\TP_Integrador.csproj.CoreCompileInputs.cache
+C:\DOC\FCE\2025-Q1 - 1654 - CAI\TP\v2\TP_Integrador\TP_Integrador\obj\Debug\TP_Integrador.exe
+C:\DOC\FCE\2025-Q1 - 1654 - CAI\TP\v2\TP_Integrador\TP_Integrador\obj\Debug\TP_Integrador.pdb
+C:\DOC\FCE\2025-Q1 - 1654 - CAI\TP\v2\TP_Integrador\TP_Integrador\bin\Debug\Datos.dll
+C:\DOC\FCE\2025-Q1 - 1654 - CAI\TP\v2\TP_Integrador\TP_Integrador\bin\Debug\Negocio.dll
+C:\DOC\FCE\2025-Q1 - 1654 - CAI\TP\v2\TP_Integrador\TP_Integrador\bin\Debug\Persistencia.dll
+C:\DOC\FCE\2025-Q1 - 1654 - CAI\TP\v2\TP_Integrador\TP_Integrador\bin\Debug\Datos.pdb
+C:\DOC\FCE\2025-Q1 - 1654 - CAI\TP\v2\TP_Integrador\TP_Integrador\bin\Debug\Negocio.pdb
+C:\DOC\FCE\2025-Q1 - 1654 - CAI\TP\v2\TP_Integrador\TP_Integrador\bin\Debug\Persistencia.pdb
+C:\DOC\FCE\2025-Q1 - 1654 - CAI\TP\v2\TP_Integrador\TP_Integrador\obj\Debug\TP_Integrador.FormLogin.resources
+C:\DOC\FCE\2025-Q1 - 1654 - CAI\TP\v2\TP_Integrador\TP_Integrador\obj\Debug\TP_Integ.AC5E0146.Up2Date
