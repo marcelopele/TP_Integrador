@@ -15,6 +15,11 @@ namespace Datos
         private String _contrasena;
         private DateTime _fechaAlta;
         private DateTime _fechaUltimoLogin;
+        private DateTime _fechaCambioClave;
+        private int _intentosFallidos;
+        private Boolean _bloqueo;
+        private Boolean _primerIngreso;
+
 
         //Propiedades
         public String Legajo { get => _legajo; set => _legajo = value; }
@@ -22,27 +27,90 @@ namespace Datos
         public String Contrasena { get => _contrasena; set => _contrasena = value; }
         public DateTime FechaAlta { get => _fechaAlta; set => _fechaAlta = value; }
         public DateTime FechaUltimoLogin { get => _fechaUltimoLogin; set => _fechaUltimoLogin = value; }
+        public DateTime FechaCambioClave { get => _fechaCambioClave; set => _fechaCambioClave = value; }
+        public int IntentosFallidos { get => _intentosFallidos; set => _intentosFallidos = value; }
+        public Boolean Bloqueo { get => _bloqueo; set => _bloqueo = value; }
+        public Boolean PrimerIngreso { get => _primerIngreso; set => _primerIngreso = value; }
+
 
         //Constructor
-        public Credencial(String registro)
+        public Credencial(String registro, int intentos, Boolean bloqueo)
         {
             String[] datos = registro.Split(';');
             this._legajo = datos[0];
             this._nombreUsuario = datos[1];
             this._contrasena = datos[2];
-            this._fechaAlta = DateTime.ParseExact(datos[3], "d/M/yyyy", CultureInfo.InvariantCulture);
-            this._fechaUltimoLogin = DateTime.ParseExact(datos[4], "d/M/yyyy", CultureInfo.InvariantCulture);
+
+            if (DateTime.TryParseExact(datos[3], "d/M/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime fechaAlta))
+            {
+                this._fechaAlta = fechaAlta;
+            }
+
+            if (DateTime.TryParseExact(datos[4], "d/M/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime fechaUltimoLogin))
+            {
+                this._fechaUltimoLogin = fechaUltimoLogin;
+            }
+
+            if (DateTime.TryParseExact(datos[5], "d/M/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime fechaCambioClave))
+            {
+                this._fechaCambioClave = fechaCambioClave;
+            }
+
+            if (datos[5] == "")
+            {
+                this._primerIngreso = true;
+            }
+            else
+            {
+                this._primerIngreso = false;
+            }
+
+            this._intentosFallidos = intentos;
+            this._bloqueo = bloqueo;
         }
+
+        // Método para identificar si la clave está vencida
+        public Boolean ClaveVencida()
+        {
+            Boolean salida = false;
+
+            if (FechaCambioClave != null)
+            {
+                int días = (DateTime.Now - FechaCambioClave).Days;
+                if (días > 30)
+                {
+                    salida = true;
+                }
+            }
+
+            return salida;
+        }
+
 
         // Método para convertir al formato de registro del CSV
         public String ToStringCSV()
         {
-            return  this.Legajo + ";"+
-                    this.NombreUsuario + ";" +
-                    this.Contrasena + ";" +
-                    this.FechaAlta.ToString("dd/MM/yyyy") + ";" +
-                    this.FechaUltimoLogin.ToString("dd/MM/yyyy");
+            String legajo = this.Legajo;
+            String nombreUsuario = this.NombreUsuario;
+            String contrasena = this.Contrasena;
+            String fechaAlta = this.FechaAlta.ToString("dd/MM/yyyy");
+            String fechaUltimoLogin = this.FechaUltimoLogin.ToString("dd/MM/yyyy");
+            String fechaCambioClave = this.FechaCambioClave.ToString("dd/MM/yyyy");
+
+            if(this.PrimerIngreso==true)
+            {
+                fechaUltimoLogin = "";
+                fechaCambioClave = "";
+            }
+
+            return legajo + ";"+
+                   nombreUsuario + ";" +
+                   contrasena + ";" +
+                   fechaAlta + ";" +
+                   fechaUltimoLogin + ";" +
+                   fechaCambioClave;
         }
+
 
 
     }

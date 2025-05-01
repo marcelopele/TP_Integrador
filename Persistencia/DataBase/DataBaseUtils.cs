@@ -10,14 +10,12 @@ namespace Persistencia.DataBase
 {
     public class DataBaseUtils
     {
-        string archivoCsv = @".\Datos\";
+        String archivoCsv = @".\Datos\";
 
         //Método para buscar un registro
         public List<String> BuscarRegistro(String nombreArchivo)
         {
-            archivoCsv = archivoCsv + nombreArchivo; // Cambia esta ruta al archivo CSV que deseas leer
-
-            String rutaArchivo = Path.GetFullPath(archivoCsv); // Normaliza la ruta
+            String rutaArchivo = Path.Combine(Directory.GetCurrentDirectory(), "Datos", nombreArchivo);
 
             List<String> listado = new List<String>();
 
@@ -25,7 +23,7 @@ namespace Persistencia.DataBase
             {
                 using (StreamReader sr = new StreamReader(rutaArchivo))
                 {
-                    string linea;
+                    String linea;
                     while ((linea = sr.ReadLine()) != null)
                     {
                         listado.Add(linea);
@@ -43,9 +41,7 @@ namespace Persistencia.DataBase
         // Método para borrar un registro
         public void BorrarRegistro(String id, String nombreArchivo)
         {
-            archivoCsv = archivoCsv + nombreArchivo; // Cambia esta ruta al archivo CSV que deseas leer
-
-            String rutaArchivo = Path.GetFullPath(archivoCsv); // Normaliza la ruta
+            String rutaArchivo = Path.Combine(Directory.GetCurrentDirectory(), "Datos", nombreArchivo);
 
             try
             {
@@ -57,7 +53,7 @@ namespace Persistencia.DataBase
                 }
 
                 // Leer el archivo y obtener las líneas
-                List<string> listado = BuscarRegistro(nombreArchivo);
+                List<String> listado = BuscarRegistro(nombreArchivo);
 
                 // Filtrar las líneas que no coinciden con el ID a borrar (comparar solo la primera columna)
                 var registrosRestantes = listado.Where(linea =>
@@ -82,19 +78,19 @@ namespace Persistencia.DataBase
         // Método para agregar un registro
         public void AgregarRegistro(String nombreArchivo, String nuevoRegistro)
         {
-            string archivoCsv = Path.Combine(Directory.GetCurrentDirectory(), "Persistencia", "Datos", nombreArchivo);
+            String rutaArchivo = Path.Combine(Directory.GetCurrentDirectory(), "Datos", nombreArchivo);
 
             try
             {
                 // Verificar si el archivo existe
-                if (!File.Exists(archivoCsv))
+                if (!File.Exists(rutaArchivo))
                 {
-                    Console.WriteLine("El archivo no existe: " + archivoCsv);
+                    Console.WriteLine("El archivo no existe: " + rutaArchivo);
                     return;
                 }
 
                 // Abrir el archivo y agregar el nuevo registro
-                using (StreamWriter sw = new StreamWriter(archivoCsv, append: true))
+                using (StreamWriter sw = new StreamWriter(rutaArchivo, append: true))
                 {
                     sw.WriteLine(nuevoRegistro); // Agregar la nueva línea
                 }
@@ -112,9 +108,7 @@ namespace Persistencia.DataBase
         // Método para modificar un registro
         public void ModificarRegistro(String nombreArchivo, int col_id, String valor_id, String nuevoRegistro)
         {
-            archivoCsv = archivoCsv + nombreArchivo; // Cambia esta ruta al archivo CSV que deseas leer
-
-            String rutaArchivo = Path.GetFullPath(archivoCsv); // Normaliza la ruta
+            String rutaArchivo = Path.Combine(Directory.GetCurrentDirectory(), "Datos", nombreArchivo);
 
             FileInfo fi = new FileInfo(rutaArchivo);
             if (!fi.Exists)
@@ -137,7 +131,7 @@ namespace Persistencia.DataBase
                     }
                     else
                     {
-                        listado.Add(string.Join(";", datos));
+                        listado.Add(String.Join(";", datos));
                     }
                 }
                 sr.Close();
@@ -153,5 +147,42 @@ namespace Persistencia.DataBase
 
         }
 
+        // Elimina uno o varios registros buscando un valor en una columna
+        public void EliminarRegistros(String nombreArchivo, int col_id, String valor_id)
+        {
+            String rutaArchivo = Path.Combine(Directory.GetCurrentDirectory(), "Datos", nombreArchivo);
+
+            FileInfo fi = new FileInfo(rutaArchivo);
+            if (!fi.Exists)
+            {
+                Console.WriteLine("El archivo no existe: " + nombreArchivo);
+                return;
+            }
+            else
+            {
+                StreamReader sr = fi.OpenText();
+
+                // Leo el archivo y lo guardo en una lista sin el/los registros que coincidan
+                List<String> listado = new List<String>();
+                while (!sr.EndOfStream)
+                {
+                    String[] datos = sr.ReadLine().ToString().Split(';');
+                    if (datos[col_id] != valor_id)
+                    {
+                        listado.Add(String.Join(";", datos));
+                    }
+                }
+                sr.Close();
+
+                // Escribo el archivo con el registro modificado
+                StreamWriter sw = fi.CreateText();
+                foreach (String item in listado)
+                {
+                    sw.WriteLine(item);
+                }
+                sw.Close();
+            }
+
+        }
     }
 }

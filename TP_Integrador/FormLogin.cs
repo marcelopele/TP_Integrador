@@ -24,22 +24,43 @@ namespace TP_Integrador
             String usuario = txtUsuario.Text;
             String password = txtClave.Text;
 
-
-            //Validar datos obligatorios
-            if (usuario.Equals("") || password.Equals(""))
+            if (usuario.Equals("") || password.Equals(""))                                      // Validar datos obligatorios
             {
                 MessageBox.Show("Completar usuario y clave");
                 return;
             }
             else
             {
-                LoginNegocio loginNegocio = new LoginNegocio();
+                LoginNegocio loginNegocio = new LoginNegocio();                                 
                 Credencial credencial = loginNegocio.login(usuario, password);
 
-                if (credencial == null)
+                if (credencial == null)                                                         // Si loginNegocio.login devuelve null: usuario o clave son incorrectos
                 {
                     MessageBox.Show("Usuario o clave incorrectos");
                     return;
+                }
+                else if(credencial.Bloqueo)                                                     // Si devuelve una credencial verificar que no esté bloqueada
+                {
+                    MessageBox.Show("Usuario bloqueado, contactese con el administrador");
+                    return;
+                }
+                else if (credencial.PrimerIngreso)                                              // Si no está bloqueada verificar si es el primer ingreso
+                {
+                    MessageBox.Show("Primer ingreso debe registrar una clave " + credencial.NombreUsuario);
+
+                    this.Hide();
+                    FormCambioClave formCambioClave = new FormCambioClave();
+                    formCambioClave.ShowDialog();
+                    this.Close();
+                }
+                else if(credencial.ClaveVencida())                                              // Si no está bloqueada verificar que no esté vencida la clave
+                {
+                    MessageBox.Show("Clave vencida se requiere cambio de clave " + credencial.NombreUsuario);
+
+                    this.Hide();
+                    FormCambioClave formCambioClave = new FormCambioClave();
+                    formCambioClave.ShowDialog();
+                    this.Close();
                 }
                 else
                 {
@@ -50,6 +71,14 @@ namespace TP_Integrador
             }
 
 
+        }
+
+        private void btnCambiarClave_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            FormCambioClave formCambioClave = new FormCambioClave();
+            formCambioClave.ShowDialog();
+            this.Close();
         }
     }
 }
