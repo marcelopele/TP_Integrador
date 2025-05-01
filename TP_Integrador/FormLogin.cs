@@ -64,9 +64,10 @@ namespace TP_Integrador
                 }
                 else
                 {
-
-                    MessageBox.Show("Bienvenido " + credencial.NombreUsuario);
-
+                    this.Hide();
+                    FormMenu formMenu= new FormMenu(credencial);
+                    formMenu.ShowDialog();
+                    this.Close();
                 }
             }
 

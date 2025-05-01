@@ -19,7 +19,8 @@ namespace Datos
         private int _intentosFallidos;
         private Boolean _bloqueo;
         private Boolean _primerIngreso;
-
+        private String _descripcionPerfil;
+        private List<Roles> _roles = new List<Roles>();
 
         //Propiedades
         public String Legajo { get => _legajo; set => _legajo = value; }
@@ -31,7 +32,8 @@ namespace Datos
         public int IntentosFallidos { get => _intentosFallidos; set => _intentosFallidos = value; }
         public Boolean Bloqueo { get => _bloqueo; set => _bloqueo = value; }
         public Boolean PrimerIngreso { get => _primerIngreso; set => _primerIngreso = value; }
-
+        public String DescripcionPerfil { get => _descripcionPerfil; set => _descripcionPerfil = value; }
+        public List<Roles> Roles { get => _roles; set => _roles = value; }
 
         //Constructor
         public Credencial(String registro, int intentos, Boolean bloqueo)
@@ -67,7 +69,51 @@ namespace Datos
 
             this._intentosFallidos = intentos;
             this._bloqueo = bloqueo;
+
+
         }
+
+        public Credencial(String registro, int intentos, Boolean bloqueo, String denominacionPerfil, List<Roles>roles)
+        {
+            String[] datos = registro.Split(';');
+            this._legajo = datos[0];
+            this._nombreUsuario = datos[1];
+            this._contrasena = datos[2];
+
+            if (DateTime.TryParseExact(datos[3], "d/M/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime fechaAlta))
+            {
+                this._fechaAlta = fechaAlta;
+            }
+
+            if (DateTime.TryParseExact(datos[4], "d/M/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime fechaUltimoLogin))
+            {
+                this._fechaUltimoLogin = fechaUltimoLogin;
+            }
+
+            if (DateTime.TryParseExact(datos[5], "d/M/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime fechaCambioClave))
+            {
+                this._fechaCambioClave = fechaCambioClave;
+            }
+
+            if (datos[5] == "")
+            {
+                this._primerIngreso = true;
+            }
+            else
+            {
+                this._primerIngreso = false;
+            }
+
+            this._intentosFallidos = intentos;
+            this._bloqueo = bloqueo;
+
+            this._descripcionPerfil = denominacionPerfil;
+            this._roles = roles;
+
+        }
+
+
+        // Métodos:
 
         // Método para identificar si la clave está vencida
         public Boolean ClaveVencida()
@@ -86,6 +132,10 @@ namespace Datos
             return salida;
         }
 
+        public String Bienvenida()
+        {
+            return "Bienvenido " + this.NombreUsuario;
+        }
 
         // Método para convertir al formato de registro del CSV
         public String ToStringCSV()
@@ -110,7 +160,6 @@ namespace Datos
                    fechaUltimoLogin + ";" +
                    fechaCambioClave;
         }
-
 
 
     }

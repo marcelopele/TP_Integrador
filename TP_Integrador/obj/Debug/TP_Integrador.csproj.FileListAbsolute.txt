@@ -16,3 +16,4 @@ C:\DOC\FCE\2025-Q1 - 1654 - CAI\TP\v2\TP_Integrador\TP_Integrador\bin\Debug\Pers
 C:\DOC\FCE\2025-Q1 - 1654 - CAI\TP\v2\TP_Integrador\TP_Integrador\obj\Debug\TP_Integrador.FormLogin.resources
 C:\DOC\FCE\2025-Q1 - 1654 - CAI\TP\v2\TP_Integrador\TP_Integrador\obj\Debug\TP_Integ.AC5E0146.Up2Date
 C:\DOC\FCE\2025-Q1 - 1654 - CAI\TP\v2\TP_Integrador\TP_Integrador\obj\Debug\TP_Integrador.FormCambioClave.resources
+C:\DOC\FCE\2025-Q1 - 1654 - CAI\TP\v2\TP_Integrador\TP_Integrador\obj\Debug\TP_Integrador.FormMenu.resources

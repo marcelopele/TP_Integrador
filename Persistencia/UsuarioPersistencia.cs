@@ -21,9 +21,12 @@ namespace Persistencia
                 String[] campos = registro.Split(';');
                 if (campos[1].Equals(nombreUsuario))
                 {
+                    // Obtengo cantidad de intentos fallidos para enviar al constructor
                     List<String> intentosFallidos = dataBaseUtils.BuscarRegistro("login_intentos.csv");
                     List<String> intentosFallidosUser = intentosFallidos.Where(linea => linea.Split(';')[0].Equals(campos[0])).ToList();
+                    int intentos = intentosFallidosUser.Count();
 
+                    // Obtengo si el usuario está bloqueado
                     List<String> bloqueos = dataBaseUtils.BuscarRegistro("usuario_bloqueado.csv");
                     List<String> bloqueosUser = bloqueos.Where(linea => linea.Split(';')[0].Equals(campos[0])).ToList();
                     Boolean bloqueo = false;
@@ -32,7 +35,52 @@ namespace Persistencia
                         bloqueo = true;
                     }
 
-                    credencial = new Credencial(registro, intentosFallidosUser.Count(), bloqueo);
+                    // Obtengo el perfil del usuario
+                    List<String> Perfiles = dataBaseUtils.BuscarRegistro("usuario_perfil.csv");
+                    int usuarioPerfil=0;
+                    foreach (String PerfilUser in Perfiles)
+                    {
+                        String[] camposPerfilUser = PerfilUser.Split(';');
+                        if (camposPerfilUser[0].Equals(campos[0]))
+                        {
+                            usuarioPerfil = Int32.Parse(camposPerfilUser[1]);
+                            break;
+                        }
+                    }
+                    // Obtengo la descripción del perfil
+                    List<String> PerfilesDescripciones = dataBaseUtils.BuscarRegistro("perfil.csv");
+                    String descripcionPerfil = "";
+                    foreach (String Perfil in PerfilesDescripciones)
+                    {
+                        String[] camposPerfil = Perfil.Split(';');
+                        if (camposPerfil[0].Equals(usuarioPerfil.ToString()))
+                        {
+                            descripcionPerfil = camposPerfil[1];
+                            break;
+                        }
+                    }
+
+                    // Obtengo los roles del usuario y la denominación de cada rol
+                    List<String> Roles = dataBaseUtils.BuscarRegistro("perfil_rol.csv");
+                    List<Roles> roles = new List<Roles>();
+                    foreach (String RolNro in Roles) {
+                        String[] camposRolNro = RolNro.Split(';');
+                        if (camposRolNro[0].Equals(usuarioPerfil.ToString()))
+                        {
+                            List<String> RolesDescripciones = dataBaseUtils.BuscarRegistro("rol.csv");
+                            foreach (String Rol in RolesDescripciones)
+                            {
+                                String[] camposRol = Rol.Split(';');
+                                if (camposRol[0].Equals(camposRolNro[1]))
+                                {
+                                    roles.Add(new Roles(Int32.Parse(camposRol[0]), camposRol[1]));
+                                    break;
+                                }
+                            }
+                        }
+                    }
+
+                    credencial = new Credencial(registro, intentos, bloqueo, descripcionPerfil, roles);
                     break;
                 }
             }
