@@ -43,7 +43,9 @@ namespace TP_Integrador
                 }
                 else
                 {
+
                     MessageBox.Show("Bienvenido " + credencial.NombreUsuario);
+
                 }
             }
 

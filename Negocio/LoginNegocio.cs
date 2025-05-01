@@ -12,18 +12,41 @@ namespace Negocio
     {
         public Credencial login(String usuario, String password)
         {
-            UsuarioPersistencia usuarioPersistencia = new UsuarioPersistencia();
+            Credencial salida = null;
 
+            UsuarioPersistencia usuarioPersistencia = new UsuarioPersistencia();
             Credencial credencial = usuarioPersistencia.login(usuario);
 
-            if (credencial != null)
+            //Si el usuario existe y coincide la clave actualiza fecha de login
+            if (credencial != null && credencial.Contrasena.Equals(password))
             {
-                if (credencial.Contrasena.Equals(password))
-                {
-                    return credencial;
-                }
+                credencial.FechaUltimoLogin = DateTime.Now;
+                usuarioPersistencia.ActualizarIngreso(credencial);
+
+                salida = credencial;
             }
-            return null;
+            //Si el usuario existe pero no coincide la clave registrar intento fallido
+            //Si hay 3 o más intentos fallidos ver que esté en usuario_bloqueado.csv
+            else if (credencial != null)
+            {
+
+
+
+            }
+
+            return salida;
         }
+
+        public Boolean EsUsuarioBloqueado(String usuario)
+        {
+            Boolean salida = false;
+
+
+
+            return salida;
+        }
+
+
+
     }
 }

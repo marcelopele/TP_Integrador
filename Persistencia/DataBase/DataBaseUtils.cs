@@ -11,6 +11,8 @@ namespace Persistencia.DataBase
     public class DataBaseUtils
     {
         string archivoCsv = @".\Datos\";
+
+        //Método para buscar un registro
         public List<String> BuscarRegistro(String nombreArchivo)
         {
             archivoCsv = archivoCsv + nombreArchivo; // Cambia esta ruta al archivo CSV que deseas leer
@@ -39,7 +41,7 @@ namespace Persistencia.DataBase
         }
 
         // Método para borrar un registro
-        public void BorrarRegistro(string id, String nombreArchivo)
+        public void BorrarRegistro(String id, String nombreArchivo)
         {
             archivoCsv = archivoCsv + nombreArchivo; // Cambia esta ruta al archivo CSV que deseas leer
 
@@ -78,7 +80,7 @@ namespace Persistencia.DataBase
         }
 
         // Método para agregar un registro
-        public void AgregarRegistro(string nombreArchivo, string nuevoRegistro)
+        public void AgregarRegistro(String nombreArchivo, String nuevoRegistro)
         {
             string archivoCsv = Path.Combine(Directory.GetCurrentDirectory(), "Persistencia", "Datos", nombreArchivo);
 
@@ -106,5 +108,50 @@ namespace Persistencia.DataBase
                 Console.WriteLine($"Pila de errores: {e.StackTrace}");
             }
         }
+
+        // Método para modificar un registro
+        public void ModificarRegistro(String nombreArchivo, int col_id, String valor_id, String nuevoRegistro)
+        {
+            archivoCsv = archivoCsv + nombreArchivo; // Cambia esta ruta al archivo CSV que deseas leer
+
+            String rutaArchivo = Path.GetFullPath(archivoCsv); // Normaliza la ruta
+
+            FileInfo fi = new FileInfo(rutaArchivo);
+            if (!fi.Exists)
+            {
+                Console.WriteLine("El archivo no existe: " + nombreArchivo);
+                return;
+            }
+            else
+            {
+                StreamReader sr = fi.OpenText();
+
+                // Leo el archivo y lo guardo en una lista con el registro modificado
+                List<String> listado = new List<String>();
+                while (!sr.EndOfStream)
+                {
+                    String[] datos = sr.ReadLine().ToString().Split(';');
+                    if (datos[col_id] == valor_id)
+                    {
+                        listado.Add(nuevoRegistro);
+                    }
+                    else
+                    {
+                        listado.Add(string.Join(";", datos));
+                    }
+                }
+                sr.Close();
+
+                // Escribo el archivo con el registro modificado
+                StreamWriter sw = fi.CreateText();
+                foreach (String item in listado)
+                {
+                    sw.WriteLine(item);
+                }
+                sw.Close();
+            }
+
+        }
+
     }
 }

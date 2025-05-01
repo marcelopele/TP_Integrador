@@ -28,5 +28,19 @@ namespace Persistencia
             return credencial;
         }
 
+        public void BloquearUsuario(String usuario)
+        {
+            //Actualizar el estado del usuario a bloqueado
+            //Persistir
+        }
+
+        public void ActualizarIngreso(Credencial credencial)
+        {
+            DataBaseUtils dataBaseUtils = new DataBaseUtils();
+            dataBaseUtils.ModificarRegistro("credenciales.csv", 1, credencial.NombreUsuario, credencial.ToStringCSV());
+
+        }
+
+
     }
 }

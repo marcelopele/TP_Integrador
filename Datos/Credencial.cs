@@ -17,9 +17,9 @@ namespace Datos
         private DateTime _fechaUltimoLogin;
 
         //Propiedades
-        public string Legajo { get => _legajo; set => _legajo = value; }
-        public string NombreUsuario { get => _nombreUsuario; set => _nombreUsuario = value; }
-        public string Contrasena { get => _contrasena; set => _contrasena = value; }
+        public String Legajo { get => _legajo; set => _legajo = value; }
+        public String NombreUsuario { get => _nombreUsuario; set => _nombreUsuario = value; }
+        public String Contrasena { get => _contrasena; set => _contrasena = value; }
         public DateTime FechaAlta { get => _fechaAlta; set => _fechaAlta = value; }
         public DateTime FechaUltimoLogin { get => _fechaUltimoLogin; set => _fechaUltimoLogin = value; }
 
@@ -33,6 +33,17 @@ namespace Datos
             this._fechaAlta = DateTime.ParseExact(datos[3], "d/M/yyyy", CultureInfo.InvariantCulture);
             this._fechaUltimoLogin = DateTime.ParseExact(datos[4], "d/M/yyyy", CultureInfo.InvariantCulture);
         }
+
+        // Método para convertir al formato de registro del CSV
+        public String ToStringCSV()
+        {
+            return  this.Legajo + ";"+
+                    this.NombreUsuario + ";" +
+                    this.Contrasena + ";" +
+                    this.FechaAlta.ToString("dd/MM/yyyy") + ";" +
+                    this.FechaUltimoLogin.ToString("dd/MM/yyyy");
+        }
+
 
     }
 }
