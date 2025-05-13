@@ -11,39 +11,36 @@ namespace Negocio
 {
     public class LoginNegocio
     {
-        public Credencial login(String usuario, String password)
+        public Credencial Login(String usuario, String password)
         {
             Credencial salida = null;
 
             UsuarioPersistencia usuarioPersistencia = new UsuarioPersistencia();
-            Credencial credencial = usuarioPersistencia.login(usuario);
+            Credencial credencial = usuarioPersistencia.Login(usuario);
 
-            if (credencial != null && credencial.Contrasena.Equals(password))       // El usuario existe y la clave es correcta
+            if (credencial != null && credencial.Contrasena.Equals(password))       // EL USUARIO EXISTE Y LA CLAVE ES CORRECTA
             {
                 if (!credencial.Bloqueo)                                            //      Si no está bloqueado:
                 {
-                    credencial.FechaUltimoLogin = DateTime.Now;                     //      actualiza el último ingreso en el objeto
-                    usuarioPersistencia.ActualizarCredencial(credencial);           //      actualiza el último ingreso en el archivo
-                    usuarioPersistencia.LimpiarIntentosFallidos(credencial);        //      limpia los intentos fallidos
+                    credencial.FechaUltimoLogin = DateTime.Now;                     //          actualiza el último ingreso en el objeto
+                    usuarioPersistencia.ActualizarCredencial(credencial);           //          actualiza el último ingreso en el archivo
+                    usuarioPersistencia.LimpiarIntentosFallidos(credencial);        //          limpia los intentos fallidos
                 }
 
-                salida = credencial;                                                // Devuelve la credencial => Si está bloqueada va a enviar su credencial bloqueada
+                salida = credencial;                                                // Devuelve la credencial => Si está bloqueada va a enviar su credencial bloqueada sin registrar el ingreso ni limpiar los intentos fallidos
             }
-            else if (credencial != null)                                            // El usuario existe pero la clave es incorrecta
+            else if (credencial != null)                                            // EL USUARIO EXISTE PERO LA CLAVE ES INCORRECTA
             {
                 credencial.IntentosFallidos++;                                      //      sumo el intento fallido en el objeto
                 usuarioPersistencia.RegistrarIntentoFallido(credencial);            //      agrega el intento fallido en el archivo
 
-                if (credencial.IntentosFallidos >= 3)                               //      Si llegó a los 3 intentos                             
+                if (credencial.IntentosFallidos >= 3 && !credencial.Bloqueo)        //      Si llegó a los 3 intentos y aún no está bloqueado                     
                 {
-                    if (!credencial.Bloqueo)                                        //      y aún no está bloqueado
-                    {
                         usuarioPersistencia.RegistrarBloqueo(credencial);           //      registra el bloqueo en el archivo
-                    }
-                }                                                                   // No devuelve la credencial => clave incorrecta va a dar mensaje de "usuario o clave incorrectos"
+                }                                                                   // Devuelve credencial=null => clave incorrecta va a mostrar mensaje de "usuario o clave incorrectos"
             }
-                                                                                    // El usuario no existe
-            return salida;                                                          // No devuelve la credencial => usuario incorrecto va a dar mensaje de "usuario o clave incorrectos"
+                                                                                    // EL USUARIO NO EXISTE
+            return salida;                                                          // Devuelve credencial=null => usuario incorrecto va a mostrar mensaje de "usuario o clave incorrectos"
         }
 
         public void CambiarClave(Credencial credencial_con_nueva_clave)

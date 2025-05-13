@@ -72,7 +72,7 @@ namespace TP_Integrador
                 else if (clave_nva1.Length < 8)
                 {
                     errClaveNva1.Visible = true;                                            // Marcar error en el campo de clave nueva 1
-                    errMsjAd += "* Debe contener 8 o más caracteres\r\n";
+                    errMsjAd += "* La clave debe contener 8 o más caracteres\r\n";
                 }
 
                 if (string.IsNullOrEmpty(clave_nva2))
@@ -96,7 +96,7 @@ namespace TP_Integrador
             else
             {
                 LoginNegocio loginNegocio = new LoginNegocio();
-                Credencial credencial = loginNegocio.login(usuario, clave_actual);
+                Credencial credencial = loginNegocio.Login(usuario, clave_actual);
 
                 //2.1. Validar que el usuario y contraseña sean correctos
                 if (credencial == null)

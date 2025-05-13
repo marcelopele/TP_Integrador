@@ -65,6 +65,7 @@
             this.btnOperador.TabIndex = 49;
             this.btnOperador.Text = "Operador";
             this.btnOperador.UseVisualStyleBackColor = true;
+            this.btnOperador.Click += new System.EventHandler(this.btnOperador_Click);
             // 
             // btnModificarPersona
             // 

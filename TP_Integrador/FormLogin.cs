@@ -21,32 +21,47 @@ namespace TP_Integrador
 
         private void btnIngresar_Click(object sender, EventArgs e)
         {
+            errUsr.Visible = false;
+            errClave.Visible = false;
+            errMsj.Visible = false;
+
             String usuario = txtUsuario.Text;
             String password = txtClave.Text;
 
             if (usuario.Equals("") || password.Equals(""))                                      // Validar datos obligatorios
             {
-                MessageBox.Show("Completar usuario y clave");
-                return;
+                if (string.IsNullOrEmpty(usuario))
+                {
+                    errUsr.Visible = true;                                                      // Marcar error en el campo de usuario
+                }
+
+                if (string.IsNullOrEmpty(password))
+                {
+                    errClave.Visible = true;                                                    // Marcar error en el campo de clave
+                }
+                errMsj.Text = "* Completar datos obligatorios";
+                errMsj.Visible = true;
             }
             else
             {
                 LoginNegocio loginNegocio = new LoginNegocio();                                 
-                Credencial credencial = loginNegocio.login(usuario, password);
+                Credencial credencial = loginNegocio.Login(usuario, password);
 
                 if (credencial == null)                                                         // Si loginNegocio.login devuelve null: usuario o clave son incorrectos
                 {
-                    MessageBox.Show("Usuario o clave incorrectos");
-                    return;
+                    errUsr.Visible = true;                                                      // Marcar error en el campo de usuario
+                    errClave.Visible = true;                                                    // Marcar error en el campo de clave actual
+                    errMsj.Text = "* Usuario o clave incorrectos";                              // Mostrar mensaje de error
+                    errMsj.Visible = true;
                 }
                 else if(credencial.Bloqueo)                                                     // Si devuelve una credencial verificar que no esté bloqueada
                 {
-                    MessageBox.Show("Usuario bloqueado, contactese con el administrador");
-                    return;
+                    errMsj.Text = "* Usuario bloqueado, \r\n contactese con el administrador";       // Mostrar mensaje de error
+                    errMsj.Visible = true;
                 }
                 else if (credencial.PrimerIngreso)                                              // Si no está bloqueada verificar si es el primer ingreso
                 {
-                    MessageBox.Show("Primer ingreso debe registrar una clave " + credencial.NombreUsuario);
+                    MessageBox.Show("Primer ingreso debe registrar una clave");
 
                     this.Hide();
                     FormCambioClave formCambioClave = new FormCambioClave();
@@ -55,7 +70,7 @@ namespace TP_Integrador
                 }
                 else if(credencial.ClaveVencida())                                              // Si no está bloqueada verificar que no esté vencida la clave
                 {
-                    MessageBox.Show("Clave vencida se requiere cambio de clave " + credencial.NombreUsuario);
+                    MessageBox.Show("Clave vencida se requiere cambio de clave");
 
                     this.Hide();
                     FormCambioClave formCambioClave = new FormCambioClave();

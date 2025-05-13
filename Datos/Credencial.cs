@@ -36,46 +36,10 @@ namespace Datos
         public List<Roles> Roles { get => _roles; set => _roles = value; }
 
         //Constructor
-        public Credencial(String registro, int intentos, Boolean bloqueo)
-        {
-            String[] datos = registro.Split(';');
-            this._legajo = datos[0];
-            this._nombreUsuario = datos[1];
-            this._contrasena = datos[2];
-
-            if (DateTime.TryParseExact(datos[3], "d/M/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime fechaAlta))
-            {
-                this._fechaAlta = fechaAlta;
-            }
-
-            if (DateTime.TryParseExact(datos[4], "d/M/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime fechaUltimoLogin))
-            {
-                this._fechaUltimoLogin = fechaUltimoLogin;
-            }
-
-            if (DateTime.TryParseExact(datos[5], "d/M/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime fechaCambioClave))
-            {
-                this._fechaCambioClave = fechaCambioClave;
-            }
-
-            if (datos[5] == "")
-            {
-                this._primerIngreso = true;
-            }
-            else
-            {
-                this._primerIngreso = false;
-            }
-
-            this._intentosFallidos = intentos;
-            this._bloqueo = bloqueo;
-
-
-        }
-
         public Credencial(String registro, int intentos, Boolean bloqueo, String denominacionPerfil, List<Roles>roles)
         {
             String[] datos = registro.Split(';');
+
             this._legajo = datos[0];
             this._nombreUsuario = datos[1];
             this._contrasena = datos[2];

@@ -61,6 +61,9 @@ namespace TP_Integrador
             this.Close();
         }
 
+        private void btnOperador_Click(object sender, EventArgs e)
+        {
 
+        }
     }
 }

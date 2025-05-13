@@ -12,21 +12,22 @@ namespace Persistencia.DataBase
     {
         String archivoCsv = @".\Datos\";
 
-        //Método para buscar un registro
-        public List<String> BuscarRegistro(String nombreArchivo)
+        // Método para buscar un registro con un valor específico
+        public List<String> BuscarRegistrosPorValor(String nombreArchivo, int col_id, String valor_id)
         {
+            List<String> salida = new List<String>();
             String rutaArchivo = Path.Combine(Directory.GetCurrentDirectory(), "Datos", nombreArchivo);
-
-            List<String> listado = new List<String>();
-
             try
             {
                 using (StreamReader sr = new StreamReader(rutaArchivo))
                 {
-                    String linea;
-                    while ((linea = sr.ReadLine()) != null)
+                    while (!sr.EndOfStream)
                     {
-                        listado.Add(linea);
+                        String[] datos = sr.ReadLine().ToString().Split(';');
+                        if (datos[col_id] == valor_id)
+                        {
+                            salida.Add(String.Join(";", datos));
+                        }
                     }
                 }
             }
@@ -35,44 +36,35 @@ namespace Persistencia.DataBase
                 Console.WriteLine("No se pudo leer el archivo:");
                 Console.WriteLine(e.Message);
             }
-            return listado;
+            return salida;
         }
 
-        // Método para borrar un registro
-        public void BorrarRegistro(String id, String nombreArchivo)
+        // Método para buscar un valor en una columna específica
+        public String BuscarValor(String nombreArchivo, int col_id, String valor_id, int col_valor_buscado)
         {
+            String salida = null;
             String rutaArchivo = Path.Combine(Directory.GetCurrentDirectory(), "Datos", nombreArchivo);
-
             try
             {
-                // Verificar si el archivo existe
-                if (!File.Exists(rutaArchivo))
+                using (StreamReader sr = new StreamReader(rutaArchivo))
                 {
-                    Console.WriteLine("El archivo no existe: " + archivoCsv);
-                    return;
+                    while (!sr.EndOfStream)
+                    {
+                        String[] datos = sr.ReadLine().ToString().Split(';');
+                        if (datos[col_id] == valor_id)
+                        {
+                            salida = datos[col_valor_buscado];
+                            break;
+                        }
+                    }
                 }
-
-                // Leer el archivo y obtener las líneas
-                List<String> listado = BuscarRegistro(nombreArchivo);
-
-                // Filtrar las líneas que no coinciden con el ID a borrar (comparar solo la primera columna)
-                var registrosRestantes = listado.Where(linea =>
-                {
-                    var campos = linea.Split(';');
-                    return campos[0] != id; // Verifica solo el ID (primera columna)
-                }).ToList();
-
-                // Sobrescribir el archivo con las líneas restantes
-                File.WriteAllLines(archivoCsv, registrosRestantes);
-
-                Console.WriteLine($"Registro con ID {id} borrado correctamente.");
             }
             catch (Exception e)
             {
-                Console.WriteLine("Error al intentar borrar el registro:");
-                Console.WriteLine($"Mensaje: {e.Message}");
-                Console.WriteLine($"Pila de errores: {e.StackTrace}");
+                Console.WriteLine("No se pudo leer el archivo:");
+                Console.WriteLine(e.Message);
             }
+            return salida;
         }
 
         // Método para agregar un registro
@@ -110,45 +102,98 @@ namespace Persistencia.DataBase
         {
             String rutaArchivo = Path.Combine(Directory.GetCurrentDirectory(), "Datos", nombreArchivo);
 
-            FileInfo fi = new FileInfo(rutaArchivo);
-            if (!fi.Exists)
+            try
             {
-                Console.WriteLine("El archivo no existe: " + nombreArchivo);
-                return;
-            }
-            else
-            {
-                StreamReader sr = fi.OpenText();
-
-                // Leo el archivo y lo guardo en una lista con el registro modificado
-                List<String> listado = new List<String>();
-                while (!sr.EndOfStream)
+                // Verificar si el archivo existe
+                if (!File.Exists(rutaArchivo))
                 {
-                    String[] datos = sr.ReadLine().ToString().Split(';');
-                    if (datos[col_id] == valor_id)
-                    {
-                        listado.Add(nuevoRegistro);
-                    }
-                    else
-                    {
-                        listado.Add(String.Join(";", datos));
-                    }
+                    Console.WriteLine("El archivo no existe: " + rutaArchivo);
+                    return;
                 }
-                sr.Close();
+
+                // Leeo el archivo y lo guardo en una lista con el registro modificado
+                List<String> listaModificada = new List<String>();
+                using (StreamReader sr = new StreamReader(rutaArchivo))
+                {
+                    while (!sr.EndOfStream)
+                    {
+                        String[] datos = sr.ReadLine().ToString().Split(';');
+                        if (datos[col_id] == valor_id)
+                        {
+                            listaModificada.Add(nuevoRegistro);
+                        }
+                        else
+                        {
+                            listaModificada.Add(String.Join(";", datos));
+                        }
+                    }
+                    sr.Close();
+                }
 
                 // Escribo el archivo con el registro modificado
-                StreamWriter sw = fi.CreateText();
-                foreach (String item in listado)
+                using (StreamWriter sw = new StreamWriter(rutaArchivo))
                 {
-                    sw.WriteLine(item);
+                    foreach (String item in listaModificada)
+                    {
+                        sw.WriteLine(item);
+                    }
+                    sw.Close();
                 }
-                sw.Close();
             }
-
+            catch (Exception e)
+            {
+                Console.WriteLine("No se pudo leer el archivo:");
+                Console.WriteLine(e.Message);
+            }
         }
 
         // Elimina uno o varios registros buscando un valor en una columna
         public void EliminarRegistros(String nombreArchivo, int col_id, String valor_id)
+        {
+            String rutaArchivo = Path.Combine(Directory.GetCurrentDirectory(), "Datos", nombreArchivo);
+
+            try
+            {
+                // Verificar si el archivo existe
+                if (!File.Exists(rutaArchivo))
+                {
+                    Console.WriteLine("El archivo no existe: " + rutaArchivo);
+                    return;
+                }
+
+                // Leeo el archivo y lo guardo en una lista sin los registros a eliminar
+                List<String> listaModificada = new List<String>();
+                using (StreamReader sr = new StreamReader(rutaArchivo))
+                {
+                    while (!sr.EndOfStream)
+                    {
+                        String[] datos = sr.ReadLine().ToString().Split(';');
+                        if (datos[col_id] != valor_id)
+                        {
+                            listaModificada.Add(String.Join(";", datos));
+                        }
+                    }
+                    sr.Close();
+                }
+
+                // Escribo el archivo con el registro modificado
+                using (StreamWriter sw = new StreamWriter(rutaArchivo))
+                {
+                    foreach (String item in listaModificada)
+                    {
+                        sw.WriteLine(item);
+                    }
+                    sw.Close();
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("No se pudo leer el archivo:");
+                Console.WriteLine(e.Message);
+            }
+        }
+
+        public void EliminarRegistrosBKP(String nombreArchivo, int col_id, String valor_id)
         {
             String rutaArchivo = Path.Combine(Directory.GetCurrentDirectory(), "Datos", nombreArchivo);
 
@@ -184,5 +229,6 @@ namespace Persistencia.DataBase
             }
 
         }
+
     }
 }
