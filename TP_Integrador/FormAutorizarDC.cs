@@ -99,10 +99,7 @@ namespace TP_Integrador
             operacionNegocio.AprobarOperacionDC(opeDC, credencial_actual);
 
             //Actualizar la credencial
-            
-
-            //            Persona persona_modificada = new Persona(opeDC.ToStringCSV_PersonaModificada());
-            //            personaNegocio.ActualizarCredencial(persona_modificada);
+            loginNegocio.DesbloquearUsuario(opeDC);
 
             //Recargar la lista de operaciones pendientes y limpia la operación procesada
             CargarListaOperaciones();

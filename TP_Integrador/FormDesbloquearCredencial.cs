@@ -134,7 +134,7 @@ namespace TP_Integrador
         private void FormatosC()
         {
             // Modo consulta:
-            lstCredenciales.Enabled = false;        // Listado: ya no permite seleccionar otra credencial
+            lstCredenciales.Enabled = true;        // Listado: ya no permite seleccionar otra credencial
 
             txtContrasenaSel.ReadOnly = true;       // Campo no editable en modo consulta
 

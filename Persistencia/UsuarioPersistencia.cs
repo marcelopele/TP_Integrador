@@ -134,6 +134,8 @@ namespace Persistencia
         {
             DataBaseUtils dataBaseUtils = new DataBaseUtils();
             dataBaseUtils.ModificarRegistro("credenciales.csv", 1, opeDC.NombreUsuario, opeDC.ToStringCSV_CredencialDesbloqueada());
+            dataBaseUtils.EliminarRegistros("login_intentos.csv", 0, opeDC.Legajo);
+            dataBaseUtils.EliminarRegistros("usuario_bloqueado.csv", 0, opeDC.Legajo);
 
         }
     }
