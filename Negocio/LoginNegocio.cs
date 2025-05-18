@@ -51,5 +51,18 @@ namespace Negocio
             usuarioPersistencia.ActualizarCredencial(credencial_con_nueva_clave);
         }
 
+        public List<Credencial> ListCredenciales()
+        {
+            UsuarioPersistencia usuarioPersistencia = new UsuarioPersistencia();
+            List<Credencial> salida = usuarioPersistencia.ListCredenciales();
+
+            return salida;
+        }
+
+        public void DesbloquearUsuario(OpeCambioCredencial opeDC)
+        {
+            UsuarioPersistencia usuarioPersistencia = new UsuarioPersistencia();
+            usuarioPersistencia.DesbloquearUsuario(opeDC);
+        }
     }
 }

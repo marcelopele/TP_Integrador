@@ -42,6 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataBase\DataBaseUtils.cs" />
+    <Compile Include="OperacionPersistencia.cs" />
+    <Compile Include="PersonaPersistencia.cs" />
     <Compile Include="UsuarioPersistencia.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -7,3 +7,12 @@ C:\DOC\FCE\2025-Q1 - 1654 - CAI\TP\v2\TP_Integrador\Persistencia\obj\Debug\Persi
 C:\DOC\FCE\2025-Q1 - 1654 - CAI\TP\v2\TP_Integrador\Persistencia\obj\Debug\Persiste.7F7D6998.Up2Date
 C:\DOC\FCE\2025-Q1 - 1654 - CAI\TP\v2\TP_Integrador\Persistencia\obj\Debug\Persistencia.dll
 C:\DOC\FCE\2025-Q1 - 1654 - CAI\TP\v2\TP_Integrador\Persistencia\obj\Debug\Persistencia.pdb
+C:\DOC\FCE\2025-Q1 - 1654 - CAI\TP\individual\v2\TP_Integrador\Persistencia\bin\Debug\Persistencia.dll
+C:\DOC\FCE\2025-Q1 - 1654 - CAI\TP\individual\v2\TP_Integrador\Persistencia\bin\Debug\Persistencia.pdb
+C:\DOC\FCE\2025-Q1 - 1654 - CAI\TP\individual\v2\TP_Integrador\Persistencia\bin\Debug\Datos.dll
+C:\DOC\FCE\2025-Q1 - 1654 - CAI\TP\individual\v2\TP_Integrador\Persistencia\bin\Debug\Datos.pdb
+C:\DOC\FCE\2025-Q1 - 1654 - CAI\TP\individual\v2\TP_Integrador\Persistencia\obj\Debug\Persistencia.csproj.AssemblyReference.cache
+C:\DOC\FCE\2025-Q1 - 1654 - CAI\TP\individual\v2\TP_Integrador\Persistencia\obj\Debug\Persistencia.csproj.CoreCompileInputs.cache
+C:\DOC\FCE\2025-Q1 - 1654 - CAI\TP\individual\v2\TP_Integrador\Persistencia\obj\Debug\Persiste.7F7D6998.Up2Date
+C:\DOC\FCE\2025-Q1 - 1654 - CAI\TP\individual\v2\TP_Integrador\Persistencia\obj\Debug\Persistencia.dll
+C:\DOC\FCE\2025-Q1 - 1654 - CAI\TP\individual\v2\TP_Integrador\Persistencia\obj\Debug\Persistencia.pdb

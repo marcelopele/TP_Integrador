@@ -10,9 +10,8 @@ namespace Persistencia.DataBase
 {
     public class DataBaseUtils
     {
-        String archivoCsv = @".\Datos\";
 
-        // Método para buscar un registro con un valor específico
+        // Método para buscar un registro con un valor específico, o todos los registros si col_id < 0
         public List<String> BuscarRegistrosPorValor(String nombreArchivo, int col_id, String valor_id)
         {
             List<String> salida = new List<String>();
@@ -24,7 +23,11 @@ namespace Persistencia.DataBase
                     while (!sr.EndOfStream)
                     {
                         String[] datos = sr.ReadLine().ToString().Split(';');
-                        if (datos[col_id] == valor_id)
+                        if (col_id < 0)
+                        {
+                            salida.Add(String.Join(";", datos));
+                        }
+                        else if (datos[col_id] == valor_id)
                         {
                             salida.Add(String.Join(";", datos));
                         }
@@ -191,43 +194,6 @@ namespace Persistencia.DataBase
                 Console.WriteLine("No se pudo leer el archivo:");
                 Console.WriteLine(e.Message);
             }
-        }
-
-        public void EliminarRegistrosBKP(String nombreArchivo, int col_id, String valor_id)
-        {
-            String rutaArchivo = Path.Combine(Directory.GetCurrentDirectory(), "Datos", nombreArchivo);
-
-            FileInfo fi = new FileInfo(rutaArchivo);
-            if (!fi.Exists)
-            {
-                Console.WriteLine("El archivo no existe: " + nombreArchivo);
-                return;
-            }
-            else
-            {
-                StreamReader sr = fi.OpenText();
-
-                // Leo el archivo y lo guardo en una lista sin el/los registros que coincidan
-                List<String> listado = new List<String>();
-                while (!sr.EndOfStream)
-                {
-                    String[] datos = sr.ReadLine().ToString().Split(';');
-                    if (datos[col_id] != valor_id)
-                    {
-                        listado.Add(String.Join(";", datos));
-                    }
-                }
-                sr.Close();
-
-                // Escribo el archivo con el registro modificado
-                StreamWriter sw = fi.CreateText();
-                foreach (String item in listado)
-                {
-                    sw.WriteLine(item);
-                }
-                sw.Close();
-            }
-
         }
 
     }

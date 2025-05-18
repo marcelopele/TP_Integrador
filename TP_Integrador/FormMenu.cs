@@ -13,9 +13,11 @@ namespace TP_Integrador
 {
     public partial class FormMenu : Form
     {
+        Credencial credencial_actual;
         public FormMenu(Credencial credencial)
         {
             InitializeComponent();
+            credencial_actual = credencial;
             lblNombreUsuario.Text = credencial.Bienvenida();
             lblPerfil.Text = credencial.DescripcionPerfil;
 
@@ -63,6 +65,43 @@ namespace TP_Integrador
 
         private void btnOperador_Click(object sender, EventArgs e)
         {
+            this.Hide();
+            FormOperador formOperador = new FormOperador(credencial_actual);
+            formOperador.ShowDialog();
+            this.Close();
+        }
+
+        private void btnModificarPersona_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            FormModificarPersona formModificarPersona = new FormModificarPersona(credencial_actual);
+            formModificarPersona.ShowDialog();
+            this.Close();
+        }
+
+        private void btnDesbloquearCredencial_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            FormDesbloquearCredencial formDesbloquearCredencial = new FormDesbloquearCredencial(credencial_actual);
+            formDesbloquearCredencial.ShowDialog();
+            this.Close();
+        }
+
+        private void btnAutorizarModificarPersona_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            FormAutorizarMP formAutorizarMP = new FormAutorizarMP(credencial_actual);
+            formAutorizarMP.ShowDialog();
+            this.Close();
+
+        }
+
+        private void btnAutorizarDesbloquearCredencial_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            FormAutorizarDC formAutorizarDC = new FormAutorizarDC(credencial_actual);
+            formAutorizarDC.ShowDialog();
+            this.Close();
 
         }
     }

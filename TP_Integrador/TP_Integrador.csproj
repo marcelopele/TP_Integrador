@@ -46,11 +46,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormAutorizarDC.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAutorizarDC.Designer.cs">
+      <DependentUpon>FormAutorizarDC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormAutorizarMP.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAutorizarMP.Designer.cs">
+      <DependentUpon>FormAutorizarMP.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormCambioClave.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormCambioClave.Designer.cs">
       <DependentUpon>FormCambioClave.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormDesbloquearCredencial.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDesbloquearCredencial.Designer.cs">
+      <DependentUpon>FormDesbloquearCredencial.cs</DependentUpon>
     </Compile>
     <Compile Include="FormLogin.cs">
       <SubType>Form</SubType>
@@ -64,16 +82,43 @@
     <Compile Include="FormMenu.Designer.cs">
       <DependentUpon>FormMenu.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormModificarPersona.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormModificarPersona.Designer.cs">
+      <DependentUpon>FormModificarPersona.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormOperador.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormOperador.Designer.cs">
+      <DependentUpon>FormOperador.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormAutorizarDC.resx">
+      <DependentUpon>FormAutorizarDC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAutorizarMP.resx">
+      <DependentUpon>FormAutorizarMP.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormCambioClave.resx">
       <DependentUpon>FormCambioClave.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDesbloquearCredencial.resx">
+      <DependentUpon>FormDesbloquearCredencial.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMenu.resx">
       <DependentUpon>FormMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormModificarPersona.resx">
+      <DependentUpon>FormModificarPersona.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormOperador.resx">
+      <DependentUpon>FormOperador.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

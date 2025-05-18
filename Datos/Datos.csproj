@@ -42,6 +42,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Credencial.cs" />
+    <Compile Include="OpeCambioCredencial.cs" />
+    <Compile Include="OpeCambioPersona.cs" />
+    <Compile Include="Operacion.cs" />
+    <Compile Include="Persona.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Roles.cs" />
   </ItemGroup>

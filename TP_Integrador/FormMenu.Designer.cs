@@ -75,6 +75,7 @@
             this.btnModificarPersona.TabIndex = 50;
             this.btnModificarPersona.Text = "Modificar Persona";
             this.btnModificarPersona.UseVisualStyleBackColor = true;
+            this.btnModificarPersona.Click += new System.EventHandler(this.btnModificarPersona_Click);
             // 
             // btnAutorizarModificarPersona
             // 
@@ -84,6 +85,7 @@
             this.btnAutorizarModificarPersona.TabIndex = 51;
             this.btnAutorizarModificarPersona.Text = "Autorizar";
             this.btnAutorizarModificarPersona.UseVisualStyleBackColor = true;
+            this.btnAutorizarModificarPersona.Click += new System.EventHandler(this.btnAutorizarModificarPersona_Click);
             // 
             // btnDesbloquearCredencial
             // 
@@ -93,6 +95,7 @@
             this.btnDesbloquearCredencial.TabIndex = 52;
             this.btnDesbloquearCredencial.Text = "Desbloquear Credencial";
             this.btnDesbloquearCredencial.UseVisualStyleBackColor = true;
+            this.btnDesbloquearCredencial.Click += new System.EventHandler(this.btnDesbloquearCredencial_Click);
             // 
             // btnAutorizarDesbloquearCredencial
             // 
@@ -102,6 +105,7 @@
             this.btnAutorizarDesbloquearCredencial.TabIndex = 53;
             this.btnAutorizarDesbloquearCredencial.Text = "Autorizar";
             this.btnAutorizarDesbloquearCredencial.UseVisualStyleBackColor = true;
+            this.btnAutorizarDesbloquearCredencial.Click += new System.EventHandler(this.btnAutorizarDesbloquearCredencial_Click);
             // 
             // lblPerfil
             // 

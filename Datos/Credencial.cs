@@ -19,6 +19,7 @@ namespace Datos
         private int _intentosFallidos;
         private Boolean _bloqueo;
         private Boolean _primerIngreso;
+        private int _idPerfil;
         private String _descripcionPerfil;
         private List<Roles> _roles = new List<Roles>();
 
@@ -32,11 +33,12 @@ namespace Datos
         public int IntentosFallidos { get => _intentosFallidos; set => _intentosFallidos = value; }
         public Boolean Bloqueo { get => _bloqueo; set => _bloqueo = value; }
         public Boolean PrimerIngreso { get => _primerIngreso; set => _primerIngreso = value; }
+        public int IdPerfil { get => _idPerfil;set => _idPerfil = value; }
         public String DescripcionPerfil { get => _descripcionPerfil; set => _descripcionPerfil = value; }
         public List<Roles> Roles { get => _roles; set => _roles = value; }
 
         //Constructor
-        public Credencial(String registro, int intentos, Boolean bloqueo, String denominacionPerfil, List<Roles>roles)
+        public Credencial(String registro, int intentos, Boolean bloqueo, int idPerfil, String denominacionPerfil, List<Roles>roles)
         {
             String[] datos = registro.Split(';');
 
@@ -99,6 +101,12 @@ namespace Datos
         public String Bienvenida()
         {
             return "Bienvenido " + this.NombreUsuario;
+        }
+
+        //ToString personalizado
+        public override String ToString()
+        {
+            return " (" + this.Legajo + ") " + this.NombreUsuario;
         }
 
         // Método para convertir al formato de registro del CSV
