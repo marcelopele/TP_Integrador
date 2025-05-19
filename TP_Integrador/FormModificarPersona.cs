@@ -179,6 +179,13 @@ namespace TP_Integrador
             txtApellidoSel.Text = "";
             txtDNISel.Text = "";
             txtFhIngresoTxt.Text = "";
+
+            errNombre.Visible = false;
+            errApellido.Visible = false;
+            errDNI.Visible = false;
+            errFhIngreso.Visible = false;
+            errMsj.Visible = false;
+            errMsj.Text = "";
         }
         private void FormatosI()
         {

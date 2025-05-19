@@ -115,6 +115,9 @@ namespace TP_Integrador
             txtLegajoSel.Text = "";
             txtUsuarioSel.Text = "";
             txtContrasenaSel.Text = "";
+
+            errContrasena.Visible = false;
+            errMsj.Visible = false;
         }
         private void FormatosI()
         {
