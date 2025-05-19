@@ -67,6 +67,7 @@ namespace TP_Integrador
             errDNI.Visible = false;
             errFhIngreso.Visible = false;
             errMsj.Visible = false;
+            errMsj.Text = "";
 
             // Validaciones:
             // Datos obligatorios
@@ -114,7 +115,13 @@ namespace TP_Integrador
             if(txtFhIngresoSel.Value > DateTime.Now)
             {
                 errFhIngreso.Visible = true;
-                errMsj.Text = errMsj.Text + "* No se puede registrar con fechas futura\r\n";
+                errMsj.Text = errMsj.Text + "* No se puede registrar con fecha futura\r\n";
+                errMsj.Visible = true;
+                con_errores = true;
+            }else if (txtFhIngresoSel.Value < DateTime.Parse("1/1/2017 12:00:00 AM"))
+            {
+                errFhIngreso.Visible = true;
+                errMsj.Text = errMsj.Text + "* No se puede registrar fecha anterior al 1/1/2017\r\n";
                 errMsj.Visible = true;
                 con_errores = true;
             }
@@ -125,8 +132,8 @@ namespace TP_Integrador
                 var itemSeleccionado = lstPersonas.SelectedItems;
                 Persona persona = (Persona)itemSeleccionado[0];
                 Persona persona_modificada = new Persona(persona.ToStringCSV());
-                persona_modificada.Nombre= txtNombreSel.Text;
-                persona_modificada.Apellido= txtApellidoSel.Text;
+                persona_modificada.Nombre = txtNombreSel.Text;
+                persona_modificada.Apellido = txtApellidoSel.Text;
                 persona_modificada.Dni = nroDNI;
                 persona_modificada.FechaIngreso = txtFhIngresoSel.Value;
 

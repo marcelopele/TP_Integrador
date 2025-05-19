@@ -90,5 +90,11 @@ namespace Datos
                    dni + ";" +
                    fechaIngreso;
         }
+
+        public override string ToString()
+        {
+            return this.Apellido +"," + this.Nombre + " (" + this.IdOperacion + ")";
+        }
+
     }
 }

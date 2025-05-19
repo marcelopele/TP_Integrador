@@ -81,7 +81,6 @@ namespace Datos
                    idPerfil + ";" +
                    fechaAlta + ";" +
                    fechaUltimoLogin;
-
         }
 
         public String ToStringCSV_CredencialDesbloqueada()
@@ -99,6 +98,11 @@ namespace Datos
                    fechaAlta + ";" +
                    fechaUltimoLogin + ";" +
                    fechaCambioClave;
+        }
+
+        public override string ToString()
+        {
+            return this.NombreUsuario+" ("+this.IdOperacion+")";
         }
 
     }

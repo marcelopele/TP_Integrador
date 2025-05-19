@@ -48,9 +48,9 @@
             // 
             // lblPerfil
             // 
-            this.lblPerfil.Location = new System.Drawing.Point(271, 9);
+            this.lblPerfil.Location = new System.Drawing.Point(251, 9);
             this.lblPerfil.Name = "lblPerfil";
-            this.lblPerfil.Size = new System.Drawing.Size(180, 13);
+            this.lblPerfil.Size = new System.Drawing.Size(281, 13);
             this.lblPerfil.TabIndex = 61;
             this.lblPerfil.Text = "label1";
             this.lblPerfil.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -88,7 +88,7 @@
             this.errContrasena.AutoSize = true;
             this.errContrasena.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.errContrasena.ForeColor = System.Drawing.Color.Red;
-            this.errContrasena.Location = new System.Drawing.Point(439, 173);
+            this.errContrasena.Location = new System.Drawing.Point(520, 173);
             this.errContrasena.Name = "errContrasena";
             this.errContrasena.Size = new System.Drawing.Size(15, 20);
             this.errContrasena.TabIndex = 99;
@@ -101,7 +101,7 @@
             this.errMsj.AutoSize = true;
             this.errMsj.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.errMsj.ForeColor = System.Drawing.Color.Red;
-            this.errMsj.Location = new System.Drawing.Point(258, 328);
+            this.errMsj.Location = new System.Drawing.Point(243, 325);
             this.errMsj.Name = "errMsj";
             this.errMsj.Size = new System.Drawing.Size(55, 15);
             this.errMsj.TabIndex = 97;
@@ -112,9 +112,9 @@
             // btnConfirmar
             // 
             this.btnConfirmar.Enabled = false;
-            this.btnConfirmar.Location = new System.Drawing.Point(260, 284);
+            this.btnConfirmar.Location = new System.Drawing.Point(240, 285);
             this.btnConfirmar.Name = "btnConfirmar";
-            this.btnConfirmar.Size = new System.Drawing.Size(87, 23);
+            this.btnConfirmar.Size = new System.Drawing.Size(141, 23);
             this.btnConfirmar.TabIndex = 93;
             this.btnConfirmar.Text = "Confirmar";
             this.btnConfirmar.UseVisualStyleBackColor = true;
@@ -123,9 +123,9 @@
             // lblCredencial
             // 
             this.lblCredencial.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCredencial.Location = new System.Drawing.Point(259, 43);
+            this.lblCredencial.Location = new System.Drawing.Point(239, 43);
             this.lblCredencial.Name = "lblCredencial";
-            this.lblCredencial.Size = new System.Drawing.Size(180, 13);
+            this.lblCredencial.Size = new System.Drawing.Size(281, 13);
             this.lblCredencial.TabIndex = 90;
             this.lblCredencial.Text = "Credencial a desbloquear";
             this.lblCredencial.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -133,7 +133,7 @@
             // lblContrasenaSel
             // 
             this.lblContrasenaSel.AutoSize = true;
-            this.lblContrasenaSel.Location = new System.Drawing.Point(276, 196);
+            this.lblContrasenaSel.Location = new System.Drawing.Point(265, 196);
             this.lblContrasenaSel.Name = "lblContrasenaSel";
             this.lblContrasenaSel.Size = new System.Drawing.Size(109, 13);
             this.lblContrasenaSel.TabIndex = 88;
@@ -141,15 +141,15 @@
             // 
             // txtContrasenaSel
             // 
-            this.txtContrasenaSel.Location = new System.Drawing.Point(260, 173);
+            this.txtContrasenaSel.Location = new System.Drawing.Point(240, 173);
             this.txtContrasenaSel.Name = "txtContrasenaSel";
-            this.txtContrasenaSel.Size = new System.Drawing.Size(179, 20);
+            this.txtContrasenaSel.Size = new System.Drawing.Size(280, 20);
             this.txtContrasenaSel.TabIndex = 84;
             // 
             // lblLegajoSel
             // 
             this.lblLegajoSel.AutoSize = true;
-            this.lblLegajoSel.Location = new System.Drawing.Point(276, 100);
+            this.lblLegajoSel.Location = new System.Drawing.Point(265, 100);
             this.lblLegajoSel.Name = "lblLegajoSel";
             this.lblLegajoSel.Size = new System.Drawing.Size(39, 13);
             this.lblLegajoSel.TabIndex = 87;
@@ -158,7 +158,7 @@
             // lblUsuarioSel
             // 
             this.lblUsuarioSel.AutoSize = true;
-            this.lblUsuarioSel.Location = new System.Drawing.Point(276, 148);
+            this.lblUsuarioSel.Location = new System.Drawing.Point(265, 148);
             this.lblUsuarioSel.Name = "lblUsuarioSel";
             this.lblUsuarioSel.Size = new System.Drawing.Size(43, 13);
             this.lblUsuarioSel.TabIndex = 86;
@@ -166,27 +166,27 @@
             // 
             // txtUsuarioSel
             // 
-            this.txtUsuarioSel.Location = new System.Drawing.Point(260, 125);
+            this.txtUsuarioSel.Location = new System.Drawing.Point(240, 125);
             this.txtUsuarioSel.Name = "txtUsuarioSel";
             this.txtUsuarioSel.ReadOnly = true;
-            this.txtUsuarioSel.Size = new System.Drawing.Size(179, 20);
+            this.txtUsuarioSel.Size = new System.Drawing.Size(280, 20);
             this.txtUsuarioSel.TabIndex = 83;
             // 
             // txtLegajoSel
             // 
             this.txtLegajoSel.Enabled = false;
-            this.txtLegajoSel.Location = new System.Drawing.Point(260, 77);
+            this.txtLegajoSel.Location = new System.Drawing.Point(240, 77);
             this.txtLegajoSel.Name = "txtLegajoSel";
             this.txtLegajoSel.ReadOnly = true;
-            this.txtLegajoSel.Size = new System.Drawing.Size(179, 20);
+            this.txtLegajoSel.Size = new System.Drawing.Size(280, 20);
             this.txtLegajoSel.TabIndex = 82;
             // 
             // btnCancelar
             // 
             this.btnCancelar.Enabled = false;
-            this.btnCancelar.Location = new System.Drawing.Point(352, 284);
+            this.btnCancelar.Location = new System.Drawing.Point(380, 285);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(87, 23);
+            this.btnCancelar.Size = new System.Drawing.Size(140, 23);
             this.btnCancelar.TabIndex = 94;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
@@ -195,9 +195,9 @@
             // btnDesbloquear
             // 
             this.btnDesbloquear.Enabled = false;
-            this.btnDesbloquear.Location = new System.Drawing.Point(261, 283);
+            this.btnDesbloquear.Location = new System.Drawing.Point(240, 284);
             this.btnDesbloquear.Name = "btnDesbloquear";
-            this.btnDesbloquear.Size = new System.Drawing.Size(177, 23);
+            this.btnDesbloquear.Size = new System.Drawing.Size(280, 23);
             this.btnDesbloquear.TabIndex = 95;
             this.btnDesbloquear.Text = "Desbloquear";
             this.btnDesbloquear.UseVisualStyleBackColor = true;
@@ -207,7 +207,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(498, 450);
+            this.ClientSize = new System.Drawing.Size(559, 450);
             this.Controls.Add(this.errContrasena);
             this.Controls.Add(this.errMsj);
             this.Controls.Add(this.btnDesbloquear);
